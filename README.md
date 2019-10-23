@@ -2,10 +2,22 @@
 
 This project deny crawlers hosting at cloud computing to access nginx servers
 
-- Amazo Aws
+- Amazon Aws
 - Azure
 - Google Cloud
 - Digital Ocean
+
+## Configure Nginx to use conf files
+
+    $ sudo mkdir /etc/nginx/blacklist
+    $ cd /etc/nginx/blacklist
+    $ sudo wget https://github.com/alexishida/deny-cloud-ip-range/releases/download/v20191022/20191022-cloud-ip-range-nginx-conf.tar.gz && tar -zxvf 20191022-cloud-ip-range-nginx-conf.tar.gz && rm -fr 20191022-cloud-ip-range-nginx-conf.tar.gz
+    
+    Put this code in nginx.conf
+
+    include /etc/nginx/blacklist/*.conf;
+
+    $ sudo service nginx reload
 
 
 ## ISP RANGE LIST
@@ -15,19 +27,6 @@ This project deny crawlers hosting at cloud computing to access nginx servers
 ## GEO IP INFORMATION
     https://members.ip-api.com
     https://ipinfo.io
-
-
-## Nginx Deny Conf
-
-    Instructions to use in a nginx server
-    $ mkdir /etc/nginx/blacklist
-    $ wget https://github.com/alexishida/deny-cloud-ip-range/releases/download/v20191022/20191022-cloud-ip-range-nginx-conf.tar.gz && tar -zxvf 20191022-cloud-ip-range-nginx-conf.tar.gz && rm -fr 20191022-cloud-ip-range-nginx-conf.tar.gz
-    
-    Put this code in nginx.conf
-
-    include /etc/nginx/blacklist/*.conf;
-
-    $ service nginx reload
 
 
 ## Converter list to nginx deny conf
