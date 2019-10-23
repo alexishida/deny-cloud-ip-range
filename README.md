@@ -1,6 +1,6 @@
 # Deny Cloud Computing IP Range
 
-This project deny crawlers hosting at cloud computing
+This project deny crawlers hosting at cloud computing to access nginx servers
 
 - Amazo Aws
 - Azure
