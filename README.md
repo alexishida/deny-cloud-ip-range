@@ -6,6 +6,7 @@ This project deny crawlers hosting at cloud computing to access nginx servers
 - Azure
 - Google Cloud
 - Digital Ocean
+- UKSERVERS-AS UK Dedicated Servers, Hosting and Co-Location
 
 ## Configure Nginx to use conf files
 
