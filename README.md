@@ -12,8 +12,7 @@ This project deny crawlers hosting at cloud computing to access nginx servers
 
     $ sudo mkdir /etc/nginx/blacklist
     $ cd /etc/nginx/blacklist
-    $ sudo wget https://github.com/alexishida/deny-cloud-ip-range/releases/download/v20191022/20191022-cloud-ip-range-nginx-conf.tar.gz && tar -zxvf 20191022-cloud-ip-range-nginx-conf.tar.gz && rm -fr 20191022-cloud-ip-range-nginx-conf.tar.gz
-    
+
     Put this code in nginx.conf
 
     include /etc/nginx/blacklist/*.conf;
@@ -21,21 +20,28 @@ This project deny crawlers hosting at cloud computing to access nginx servers
     $ sudo service nginx reload
 
 
-## ISP RANGE LIST
+## ISP RANGE LIST AND GEOLOCATION
     https://suip.biz/?act=ipintpr
-
-
-## GEO IP INFORMATION
     https://members.ip-api.com
     https://ipinfo.io
+    https://ipgeolocation.io/
+    https://www.maxmind.com/en/geoip-demo
+    https://suip.biz/?act=ipcountry
 
 
 ## Converter list to nginx deny conf
 
     Using converter.rb to convert the list to nginx deny conf
     $ bundle install
-    $ ruby converter.rb list-range.txt    
+    $ ruby converter.rb list-range.txt
 
 
-### TODO 
-geoip.rb
+### Commands
+# gerar a lista de ip
+uniq -c ip.txt | awk '{print "deny "$2";"}' > nginx-servemania-range.conf
+
+# consulta por servico
+tail -f access.log | uniq -c | awk '{print " "$3"; # "$2" "$10}' | grep nfce
+
+# consulta os mais acessados
+cat access.log | cut -d' ' -f2 | sort | uniq -c
